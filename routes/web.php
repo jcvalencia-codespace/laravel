@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/products/{product}/update', [ProductController:: class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController:: class, 'destroy'])->name('products.destroy');
 });
+
+Route::get('/home', [HomeController:: class, 'index'])->name('home.index');
+Route::get('/home/{product}/viewitem', [HomeController:: class, 'viewitem'])->name('home.viewitem');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';

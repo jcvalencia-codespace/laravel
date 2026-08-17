@@ -2,7 +2,7 @@ import AppLayout from '@/layouts/app-layout';
 import { Button } from '../../components/ui/button';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Bell, SquarePen, Trash } from 'lucide-react';
+import { Bell, CirclePlus, SquarePen, Trash } from 'lucide-react';
 import {
     Table,
     TableBody,
@@ -50,16 +50,22 @@ export default function Index() {
                 setShowFlash(false);
             }, 5000);
 
-            return () => clearTimeout(timer); 
+            return () => clearTimeout(timer);
         }
     }, [flash.message]);
 
     return (
-        <AppLayout breadcrumbs={[{title: 'Products', href: '/products'}]}>
+        <AppLayout breadcrumbs={[{ title: 'Products', href: '/products' }]}>
             <Head title="Products" />
-            <div className='m-4'>
-                <Link href={route('products.create')}><Button>Create a Product</Button></Link>
+            <div className='m-4 flex items-center justify-between'>
+                <header className='text-4xl'>Overview of all the Products</header>
+                <span>
+                    <Link href={route('products.create')}>
+                        <Button className='bg-blue-400 hover:bg-blue-500'><CirclePlus />Create a Product</Button>
+                    </Link>
+                </span>
             </div>
+            <p className='ml-4'>Review and manage all the products</p>
             <div className='m-4'>
                 {showFlash && flash.message && (
                     <Alert>
